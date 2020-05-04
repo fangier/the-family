@@ -8,10 +8,10 @@ body.style.fontFamily = "'Roboto Condensed', sans-serif";
 
 const div = document.getElementById("root");
 div.style.position = "relative";
-div.style.height = "98vh";
+div.style.height = "100vh";
 div.style.width = "99vw";
 
-const title = document.createElement("h1");
+const title = document.createElement("span");
 title.innerHTML = "the family";
 title.style.textTransform = "uppercase";
 title.style.position = "absolute";
@@ -19,10 +19,12 @@ title.style.top = "50%";
 title.style.left = "50%";
 title.style.transform = "translate(-50%, -50%)";
 title.style.opacity = "0";
+title.style.fontSize = "8em";
+title.style.fontFamily = "'Lakki Reddy', cursive";
 div.appendChild(title);
 
 document.addEventListener("DOMContentLoaded", function(){
-    title.style.animation= "2s ease 0s 1 show";
+    title.style.animation= "5s ease 0s 1 show";
     title.style.opacity = "1";
 });
 
@@ -34,67 +36,28 @@ div.addEventListener("click", function(){
         menu.style.position = "relative";
         menu.style.height = "98vh";
         menu.style.width = "99vw";
-
-        const rows = [document.createElement("div"),document.createElement("div")];
-        rows[0].setAttribute("class", "row justify-content-center");
-        rows[1].setAttribute("class", "row justify-content-center m-t-2");
-
         body.appendChild(menu);
-        menu.appendChild(rows[0]);
-        menu.appendChild(rows[1]);
 
-        makemenu(rows[0],1);
-        makemenu(rows[1],2);
-
-
+        const tecza = [document.createElement("div"),document.createElement("div"),document.createElement("div"),document.createElement("div"),];
+        tecza[0].style.backgroundColor = "red";
+        tecza[1].style.backgroundColor = "blue";
+        tecza[2].style.backgroundColor = "pink";
+        tecza[3].style.backgroundColor = "purple";
+        for(let i=0;i<=3;i++)
+        {
+            menu.appendChild(tecza[i]);
+            tecza[i].setAttribute("class", "tyncza");
+            const tekst=document.createElement("span");
+            tekst.innerHTML = "Cokolwiek";
+            tecza[i].appendChild(tekst);
+        }
+        
     }
 
     menu.scrollIntoView();
 });
 
-function makemenu(menu, time){
-    const kafle = [];
-    const span = [];
-    const classname = ["left", "right"];
-    const title = ["Spotkania", "Wydarzenia", "Gry", "My"]
 
-    for(i=0+(time-1)*2; i<2*time; i++){
-        span[i] = document.createElement("p");
-        span[i].setAttribute("class", "text-center ")
-
-        kafle[i] = document.createElement("div");
-        kafle[i].setAttribute("class", classname[i] + " col-lg-4 m-2");
-        kafle[i].setAttribute("id", "kwadrat"+i);
-        if(window.innerWidth>window.innerHeight){
-
-            kafle[i].style.height = "50vh";
-        }
-        else{
-
-            kafle[i].style.height = "50vw";
-        }
-        kafle[i].style.borderStyle = "solid";
-        kafle[i].style.borderColor = "white";
-        kafle[i].style.borderWidth = "5px";
-
-        span[i].innerHTML = title[i];
-
-        kafle[i].appendChild(span[i])
-
-
-
-        menu.appendChild(kafle[i]);
-        kafle[i].addEventListener("click", function(e){
-            e.stopPropagation();
-            document.body.innerHTML = '';
-            window.scrollTo(0,0);
-            let kwadrat = this.getAttribute("id");
-            przenies(kwadrat);
-        });
-
-    }
-
-}
 
 function przenies(where){
     let number = where[where.length - 1];
